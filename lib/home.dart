@@ -90,7 +90,7 @@ class _HomeState extends State<Home> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('${todo.email}, (${todo.age})'),
+                        Text('${todo.email}'),
                         Text(
                           DateFormat("dd-MM-yyyy h:mm a").format(
                             todo.updatedOn.toDate(),
@@ -133,7 +133,6 @@ class _HomeState extends State<Home> {
 
   void _displayUpdateInputDialog(String id, Todo updated) async {
     final userNameController = TextEditingController(text: updated.name);
-    final userAgeController = TextEditingController(text: updated.age);
     final userEmailController = TextEditingController(text: updated.email);
     return showDialog(
       context: context,
@@ -152,10 +151,7 @@ class _HomeState extends State<Home> {
                   controller: userEmailController,
                   decoration: InputDecoration(hintText: updated.email),
                 ),
-                TextField(
-                  controller: userAgeController,
-                  decoration: InputDecoration(hintText: updated.age),
-                ),
+
               ],
             ),
           ),
@@ -175,7 +171,6 @@ class _HomeState extends State<Home> {
                 Todo todos = Todo(
                     name: userNameController.text,
                     email: userEmailController.text,
-                    age: userAgeController.text,
                     isDone: !updated.isDone,
                     createdOn: Timestamp.now(),
                     updatedOn: Timestamp.now());
@@ -183,7 +178,6 @@ class _HomeState extends State<Home> {
                 Navigator.pop(context);
                 userNameController.clear();
                 userEmailController.clear();
-                userAgeController.clear();
               },
             ),
           ],
@@ -269,7 +263,6 @@ class _HomeState extends State<Home> {
                   Todo todo = Todo(
                       name: _textEditingController.text,
                       email: _emailEditingController.text,
-                      age: _ageEditingController.text,
                       isDone: false,
                       createdOn: Timestamp.now(),
                       updatedOn: Timestamp.now());
